@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Pedido</th>
+          <th scope="col">Mesa</th>
+          <th scope="col">Status</th>
+          <th scope="col">Detalhes</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos">
+          <th>{{pedido.id}}</th>
+          <td scope="row">Mesa: {{pedido.mesa}}</td>
+          <td>{{pedido.status}}</td>
+          <td>
+              <ul *ngFor="let prato of pedido.pratos">
+                <li>
+                  {{prato.nome}}
+                </li>
+              </ul>
+          </td>
+          <td>
+            <ul *ngFor="let prato of pedido.pratos">
+              <li>
+                {{prato.preco |currency:'BRL' }}
+              </li>
+            </ul>
+          </td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

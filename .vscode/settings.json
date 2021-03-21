@@ -1,0 +1,24 @@
+{
+// "git.enabled": false,
+"files.exclude": {
+  // "node_modules": true,
+  ".editorconfig": true,
+  ".gitignore": true,
+  "angular.json": true,
+  "karma.conf.js": true,
+  // "package.json": true,
+  ".browserslistrc": true,
+  "tsconfig.app.json": true,
+  "tsconfig.json": true,
+  "tsconfig.spec.json": true,
+  "tslint.json": true,
+  "e2e": true,
+  "src/environments":true,
+  "src/favicon.ico":true,
+  "src/index.html":true,
+  "src/main.ts":true,
+  "src/polyfills.ts":true,
+  "src/styles.css":true,
+  "src/test.ts":true
+}
+}

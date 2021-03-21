@@ -1,0 +1,7 @@
+<div class="container">
+  <ul class="row">
+    <li *ngFor="let mesa of mesas">
+      <app-card [numeroMesa]="mesa.id" [statusMesa]="mesa.status"></app-card>
+    </li>
+  </ul>
+</div>
