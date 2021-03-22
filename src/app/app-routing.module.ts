@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { MesaidComponent } from './pages/mesaid/mesaid.component';
 import { MesasComponent } from './pages/mesas/mesas.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { PratosComponent } from './pages/pratos/pratos.component';
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'mesas',
     component: MesasComponent,
+  },
+  {
+    path: 'mesa/:id',
+    component: MesaidComponent,
   },
 
   {

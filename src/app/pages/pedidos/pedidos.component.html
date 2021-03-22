@@ -8,6 +8,7 @@
           <th scope="col">Status</th>
           <th scope="col">Detalhes</th>
           <th scope="col">Total</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,7 @@
           <th>{{pedido.id}}</th>
           <td scope="row">Mesa: {{pedido.mesa}}</td>
           <td>{{pedido.status}}</td>
+
           <td>
               <ul *ngFor="let prato of pedido.pratos">
                 <li>
@@ -29,8 +31,10 @@
               </li>
             </ul>
           </td>
+          <td>
 
-
+            <button type="button" class="btn btn-outline-dark"><img src="../../../assets/svg/pencil.svg"/></button>
+          </td>
         </tr>
 
       </tbody>

@@ -10,6 +10,8 @@ import { MesasComponent } from './pages/mesas/mesas.component';
 import { PratosComponent } from './pages/pratos/pratos.component';
 import { CardComponent } from './components/card/card.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { MesaidComponent } from './pages/mesaid/mesaid.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { PedidosComponent } from './pages/pedidos/pedidos.component';
     PratosComponent,
     CardComponent,
     PedidosComponent,
+    ModalComponent,
+    MesaidComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

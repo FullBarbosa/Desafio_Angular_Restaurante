@@ -15,6 +15,7 @@ export class PedidosComponent implements OnInit {
   ngOnInit(): void {
     this.servicesPedido.listarPedidos().subscribe((pedido: Array<Pedido>) => {
       this.pedidos = pedido;
+      console.log(this.pedidos);
     });
   }
 }

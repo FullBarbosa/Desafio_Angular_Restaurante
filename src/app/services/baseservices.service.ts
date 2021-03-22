@@ -21,13 +21,24 @@ export class BaseservicesService {
     return this.http.get<Mesa[]>(this.baseUrl + this.baseMesa);
   }
 
+  listarMesaId(id: number): Observable<Mesa> {
+    return this.http.get<Mesa>(`${this.baseUrl}${this.baseMesa}/${id}`);
+  }
+
   // Services Pedidos
   listarPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.baseUrl + this.basePedido);
   }
 
+  createPedido(pedido: object): Observable<Pedido> {
+    return this.http.post<Pedido>(this.baseUrl + this.basePedido, pedido);
+  }
+
   // Services Prato
   listarPratos(): Observable<Prato[]> {
     return this.http.get<Prato[]>(this.baseUrl + this.basePrato);
+  }
+  createPrato(prato: object): Observable<Prato> {
+    return this.http.post<Prato>(this.baseUrl + this.basePrato, prato);
   }
 }

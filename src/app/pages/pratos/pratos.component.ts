@@ -12,10 +12,21 @@ export class PratosComponent implements OnInit {
 
   pratos!: Prato[];
 
+  condition!: boolean;
+  conditionButton!: boolean;
+
   ngOnInit(): void {
+    this.condition = false;
+    this.conditionButton = true;
+
     this.servicesPrato.listarPratos().subscribe((prato: Array<Prato>) => {
       this.pratos = prato;
       console.log(prato);
     });
+  }
+
+  modal() {
+    this.conditionButton = false;
+    this.condition = !this.condition;
   }
 }

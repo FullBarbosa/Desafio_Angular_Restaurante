@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Mesa } from 'src/app/interface/mesa';
 import { BaseservicesService } from 'src/app/services/baseservices.service';
 
@@ -8,7 +9,10 @@ import { BaseservicesService } from 'src/app/services/baseservices.service';
   styleUrls: ['./mesas.component.css'],
 })
 export class MesasComponent implements OnInit {
-  constructor(private servicesMesa: BaseservicesService) {}
+  constructor(
+    private servicesMesa: BaseservicesService,
+    private router: Router
+  ) {}
 
   mesas!: Mesa[];
 

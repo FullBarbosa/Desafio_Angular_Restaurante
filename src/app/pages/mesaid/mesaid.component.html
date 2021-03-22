@@ -1,0 +1,48 @@
+
+
+  <div class="card mb-3" style="width: 20rem;">
+    <img class="card-img-top"
+    src="https://cdn.dribbble.com/users/2908641/screenshots/7415469/media/e496f3d8dd862c31d8cf3b20384e551b.jpg?compress=1&resize=1000x750"
+    alt="Card image cap">
+
+    <div class="card-body">
+
+      <h2 class="card-title">Mesa:{{mesa.id}}</h2>
+      <p class="card-text">Pedido.</p>
+
+      <form>
+        <div class="form-check">
+          <ul>
+            <li *ngFor="let prato of pratos">
+              <label for="">
+              <input
+              class="form-check-input position-static" type="checkbox"
+              id="blankCheckbox"
+              [value]="prato.nome"
+
+              (change)="onCheckChange($event)"
+              >
+                {{prato.nome}}</label>
+            </li>
+
+          </ul>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+          <button>Cancelar</button>
+          <button (click)="comanda($event)">Confirmar</button>
+        </div>
+      </form>
+    </div>
+
+    <form action="">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Banana</li>
+        <li class="list-group-item">Banana</li>
+      </ul>
+      <div style="display: flex; justify-content: center;">
+        <button>Pagar conta</button>
+      </div>
+    </form>
+  </div>
+

@@ -4,7 +4,7 @@
   // "node_modules": true,
   ".editorconfig": true,
   ".gitignore": true,
-  "angular.json": true,
+  // "angular.json": true,
   "karma.conf.js": true,
   // "package.json": true,
   ".browserslistrc": true,
