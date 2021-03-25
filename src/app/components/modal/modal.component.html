@@ -10,21 +10,25 @@
       <div class="modal-body">
 
 
-        <form>
+        <form [formGroup]="formulario">
           <div class="form-group">
             <label for="exampleInputEmail1">Prato</label>
-            <input type="text" class="form-control" placeholder="file...">
+
+            <input type="text" class="form-control" placeholder="file..." formControlName="name">
+
             <small id="emailHelp" class="form-text text-muted">Ensira o nome do prato.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Preço</label>
-            <input type="number" class="form-control" placeholder="0">
-            <small id="emailHelp" class="form-text text-muted">Valor do prato.</small>
+
+            <input type="number" class="form-control" placeholder="0" formControlName="preco">
+
+            <small id="emailHelp" class="form-text text-muted" >Valor do prato.</small>
           </div>
           <div class="containerButton">
 
-            <button type="button" class="btn btn-secondary">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" class="btn btn-secondary" (click)="Cancelar()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="cadastrar()">Cadastrar</button>
 
           </div>
         </form>

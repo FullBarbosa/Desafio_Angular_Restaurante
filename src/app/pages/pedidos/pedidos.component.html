@@ -8,7 +8,8 @@
           <th scope="col">Status</th>
           <th scope="col">Detalhes</th>
           <th scope="col">Total</th>
-          <th scope="col"></th>
+          <th scope="col">Cancelar</th>
+          <th scope="col">Concluido</th>
         </tr>
       </thead>
       <tbody>
@@ -18,25 +19,26 @@
           <td>{{pedido.status}}</td>
 
           <td>
-              <ul *ngFor="let prato of pedido.pratos">
-                <li>
-                  {{prato.nome}}
-                </li>
-              </ul>
-          </td>
-          <td>
-            <ul *ngFor="let prato of pedido.pratos">
-              <li>
-                {{prato.preco |currency:'BRL' }}
-              </li>
-            </ul>
+
+            {{pedido.prato.nome}}
+
           </td>
           <td>
 
-            <button type="button" class="btn btn-outline-dark"><img src="../../../assets/svg/pencil.svg"/></button>
+            {{pedido.prato.preco}}
+
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-outline-dark" (click)="statusPedidoCancelado(pedido.id)"><img
+                src="../../../assets/svg/x.svg" /></button>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-outline-dark" (click)="statusPedidoConcluido(pedido.id)"><img
+                src="../../../assets/svg/check.svg" /></button>
           </td>
         </tr>
-
       </tbody>
     </table>
   </div>

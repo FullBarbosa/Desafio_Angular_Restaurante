@@ -11,10 +11,10 @@ import { Pedido } from '../interface/pedido';
 export class BaseservicesService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'http://localhost:8080/api';
   baseMesa = '/mesas';
-  basePrato = '/prato';
-  basePedido = '/pedido';
+  basePrato = '/pratos';
+  basePedido = '/pedidos';
 
   //Services Mesas
   listarMesas(): Observable<Mesa[]> {
@@ -28,6 +28,17 @@ export class BaseservicesService {
   // Services Pedidos
   listarPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.baseUrl + this.basePedido);
+  }
+
+  listarPedidoId(id: number): Observable<Pedido> {
+    return this.http.get<Pedido>(`${this.baseUrl}${this.basePedido}/${id}`);
+  }
+
+  modificarPedidoId(pedido: Pedido): Observable<Pedido> {
+    return this.http.put<Pedido>(
+      `${this.baseUrl}${this.basePedido}/${pedido.id}`,
+      pedido
+    );
   }
 
   createPedido(pedido: object): Observable<Pedido> {
