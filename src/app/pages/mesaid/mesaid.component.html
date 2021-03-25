@@ -1,40 +1,56 @@
+<div class="card-deck animeLeft">
 
-
-  <div class="card mb-3" style="width: 20rem;">
+  <div class="card mb-3 " style="width: 20rem;">
     <img class="card-img-top"
-    src="https://cdn.dribbble.com/users/2908641/screenshots/7415469/media/e496f3d8dd862c31d8cf3b20384e551b.jpg?compress=1&resize=1000x750"
-    alt="Card image cap">
+      src="https://cdn.dribbble.com/users/2908641/screenshots/7415469/media/e496f3d8dd862c31d8cf3b20384e551b.jpg?compress=1&resize=1000x750"
+      alt="Card image cap">
 
     <div class="card-body">
 
-      <h2 class="card-title">Mesa:{{mesa.id}}</h2>
+      <h2 class="card-title">Mesa: {{mesa.id}}</h2>
+
       <p class="card-text">Pedido.</p>
 
-      <form>
-        <div class="form-check">
-          <ul>
-            <li *ngFor="let prato of pratos">
-              <label for="">
-              <input
-              class="form-check-input position-static" type="checkbox"
-              id="blankCheckbox"
-              [value]="prato.nome"
 
-              (change)="onCheckChange($event)"
-              >
+      <!-- Comanda de pedidos -->
+      <form>
+        <div class=" container form-check">
+          <ul class="row row-cols-3">
+            <li class="col" *ngFor="let prato of pratos">
+              <label for="">
+                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" [value]="prato.nome"
+                  (change)="onCheckChange($event)">
                 {{prato.nome}}</label>
             </li>
-
           </ul>
-        </div>
-
-        <div style="display: flex; justify-content: space-between;">
-          <button>Cancelar</button>
-          <button (click)="comanda($event)">Confirmar</button>
         </div>
       </form>
     </div>
 
-
+    <div style="display: flex; justify-content: space-between; margin: 1rem;">
+      <button (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+      <button (click)="realisarpedido($event) " class="btn btn-secondary">Confirmar</button>
+    </div>
   </div>
 
+  <div class="card mb-3" class="card mb-3">
+    <!-- lista de pedidos feitos por mesa -->
+    <div style="padding: 1rem;">
+      <h1>Pedidos</h1>
+      <div *ngFor="let pedido of pedidos">
+        <span >{{pedido.status}}</span>
+        <ul *ngFor="let prato of pedido.prato">
+          <li>
+            {{prato.nome}} {{prato.preco | currency:'BRL'}}
+          </li>
+        </ul>
+        <hr>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div style="display: grid; justify-content: flex-end; margin-bottom: 1rem;">
+  <h5>Valor:{{totalAPagagar | currency:'BRL' }}</h5>
+  <button type="button" class="btn btn-success" (click)="pagarConta()">Pagar</button>
+</div>

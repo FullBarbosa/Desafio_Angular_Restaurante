@@ -1,5 +1,4 @@
-
-<div class="card">
+<div class="card animeLeft">
   <div class="table-responsive">
 
     <table class="table">
@@ -8,7 +7,7 @@
           <th scope="col">Numero</th>
           <th scope="col">Prato</th>
           <th scope="col">Preço</th>
-          <th scope="col"><button type="button" class="btn btn-outline-dark" (click)="modal()"><img src="../../../assets/svg/plus.svg" /></button></th>
+          <th scope="col"><button type="button" class="btn btn-outline-dark" (click)="modal()">Adcionar Produto</button></th>
         </tr>
       </thead>
 
@@ -17,6 +16,7 @@
           <th>{{prato.id}}</th>
           <td scope="row">{{prato.nome}}</td>
           <td>{{prato.preco | currency:'BRL'}}</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -25,4 +25,4 @@
 </div>
 
 
-<app-modal *ngIf="condition" >Content to render when condition is true.</app-modal>
+<app-modal *ngIf="condition">Content to render when condition is true.</app-modal>

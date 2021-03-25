@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SweetAlert } from 'src/app/components/Swet/sweet.alert';
 import { Pedido } from 'src/app/interface/pedido';
 import { BaseservicesService } from 'src/app/services/baseservices.service';
 
@@ -30,7 +31,8 @@ export class PedidosComponent implements OnInit {
       dados.status = 'Concluido';
 
       this.servicesPedido.modificarPedidoId(dados).subscribe(() => {
-        this.router.navigate(['/']);
+        SweetAlert.exibirSucesso('Pedido Pronto!😋😋😋');
+        this.router.navigate(['/mesas']);
       });
     });
   }
@@ -40,7 +42,9 @@ export class PedidosComponent implements OnInit {
       dados.status = 'Cancelado';
 
       this.servicesPedido.modificarPedidoId(dados).subscribe(() => {
-        this.router.navigate(['/']);
+        SweetAlert.exibirErro('Pedido Cancelado!😞😞😞');
+
+        this.router.navigate(['/mesas']);
       });
     });
   }

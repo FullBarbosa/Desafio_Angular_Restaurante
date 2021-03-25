@@ -21,8 +21,19 @@ export class BaseservicesService {
     return this.http.get<Mesa[]>(this.baseUrl + this.baseMesa);
   }
 
+  createMesa(mesa: object): Observable<Mesa> {
+    return this.http.post<Mesa>(this.baseUrl + this.baseMesa, mesa);
+  }
+
   listarMesaId(id: number): Observable<Mesa> {
     return this.http.get<Mesa>(`${this.baseUrl}${this.baseMesa}/${id}`);
+  }
+
+  modificarStatusMesaId(mesa: Mesa): Observable<Mesa> {
+    return this.http.put<Mesa>(
+      `${this.baseUrl}${this.baseMesa}/${mesa.id}`,
+      mesa
+    );
   }
 
   // Services Pedidos

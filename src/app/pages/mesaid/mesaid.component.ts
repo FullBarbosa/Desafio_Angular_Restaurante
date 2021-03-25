@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SweetAlert } from 'src/app/components/Swet/sweet.alert';
 
 import { Mesa } from 'src/app/interface/mesa';
 import { Pedido } from 'src/app/interface/pedido';
@@ -18,7 +19,8 @@ export class MesaidComponent implements OnInit {
   constructor(
     // private formBuilder: FormBuilder,
     private servicesMesaId: BaseservicesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   mesa!: Mesa;
@@ -29,10 +31,13 @@ export class MesaidComponent implements OnInit {
 
   checked = <any>[];
 
+  totalAPagagar!: number;
+
   ngOnInit(): void {
     // numero de mesa
+
     const id = +this.route.snapshot.paramMap.get('id')!;
-    this.servicesMesaId.listarMesaId(id).subscribe((mesaid: any) => {
+    this.servicesMesaId.listarMesaId(id).subscribe((mesaid) => {
       this.mesa = mesaid;
     });
 
@@ -43,8 +48,15 @@ export class MesaidComponent implements OnInit {
 
     // pedidos
     this.servicesMesaId.listarPedidos().subscribe((pedido: Array<Pedido>) => {
-      this.pedidos = pedido.filter((dados) => dados.mesa === this.mesa.id);
-      console.log(this.pedidos);
+      this.pedidos = pedido.filter(
+        (dados) => dados.mesa === this.mesa.id && dados.status !== 'Cancelado'
+      );
+
+      // soma de comanda
+      this.totalAPagagar = this.pedidos
+        .filter((a) => a.status !== 'Fechado' && a.status !== 'Novo')
+        .map((a) => a.prato.reduce((a, b) => a + b.preco, 0))
+        .reduce((a, b) => a + b);
     });
   }
 
@@ -61,8 +73,14 @@ export class MesaidComponent implements OnInit {
     }
   }
 
+  // logica cancelar
+
+  cancel() {
+    this.router.navigate(['/']);
+  }
+
   // Logica de pedido
-  comanda(event: any) {
+  realisarpedido(event: any) {
     event.preventDefault();
 
     const value = this.pratos.filter((dados) =>
@@ -71,12 +89,32 @@ export class MesaidComponent implements OnInit {
 
     const value2 = {
       mesa: this.mesa.id,
-      pratos: value,
       status: 'Novo',
+      prato: value,
     };
 
-    this.servicesMesaId.createPedido(value2).subscribe(() => {
-      alert('cadastrado');
-    });
+    if (value2.prato.length !== 0) {
+      SweetAlert.exibirSucesso(' Pedido Realizado!🥰🥰🥰');
+      this.servicesMesaId.createPedido(value2).subscribe(() => {
+        this.router.navigate(['/mesas']);
+      });
+    } else {
+      SweetAlert.exibirErro('Escolha um pedido!🥵🥵🥵');
+    }
+  }
+
+  // pagar conta
+  pagarConta() {
+    const Novopedido = this.pedidos.filter((a) => a.status !== 'Novo');
+
+    for (let pedido of Novopedido) {
+      pedido.status = 'Fechado';
+      this.servicesMesaId.modificarPedidoId(pedido).subscribe(() => {
+        SweetAlert.exibirSucesso(
+          'Valor pago:' + this.totalAPagagar + 'R$' + ' Volte Sempre!🥰🥰🥰'
+        );
+      });
+    }
+    this.router.navigate(['/']);
   }
 }

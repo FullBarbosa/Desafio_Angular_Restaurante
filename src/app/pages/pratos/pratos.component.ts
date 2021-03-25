@@ -21,7 +21,6 @@ export class PratosComponent implements OnInit {
 
     this.servicesPrato.listarPratos().subscribe((prato: Array<Prato>) => {
       this.pratos = prato;
-      console.log(prato);
     });
   }
 

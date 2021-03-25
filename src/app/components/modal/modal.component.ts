@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Prato } from 'src/app/interface/prato';
 import { BaseservicesService } from 'src/app/services/baseservices.service';
+import { SweetAlert } from '../Swet/sweet.alert';
 
 @Component({
   selector: 'app-modal',
@@ -43,17 +44,16 @@ export class ModalComponent implements OnInit {
       prato.nome = this.name.value;
       prato.preco = this.preco.value;
 
-      this.servicePrato.createPrato(prato).subscribe(() => {
-        alert('cadastrado com sucesso');
+      this.servicePrato.createPrato(prato).subscribe((retorno: Prato) => {
+        SweetAlert.exibirSucesso(retorno.nome + ' incluído com sucesso!🥳🥳🥳');
         this.router.navigate(['/']);
       });
     } else {
-      alert('algo errado');
-      this.router.navigate(['/']);
+      SweetAlert.exibirErro('Preencha todos o campos.🥱🥱🥱');
     }
   }
 
   Cancelar() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/mesas']);
   }
 }

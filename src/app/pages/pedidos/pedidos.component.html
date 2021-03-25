@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card animeLeft">
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -8,8 +8,8 @@
           <th scope="col">Status</th>
           <th scope="col">Detalhes</th>
           <th scope="col">Total</th>
-          <th scope="col">Cancelar</th>
-          <th scope="col">Concluido</th>
+          <th scope="col">Opções</th>
+
         </tr>
       </thead>
       <tbody>
@@ -19,24 +19,30 @@
           <td>{{pedido.status}}</td>
 
           <td>
-
-            {{pedido.prato.nome}}
+            <ul *ngFor="let prato of pedido.prato">
+              <li>
+                {{prato.nome}}
+              </li>
+            </ul>
 
           </td>
           <td>
-
-            {{pedido.prato.preco}}
-
+            <ul *ngFor="let prato of pedido.prato">
+              <li>
+                {{prato.preco | currency:'BRL'}}
+              </li>
+            </ul>
           </td>
 
           <td>
-            <button type="button" class="btn btn-outline-dark" (click)="statusPedidoCancelado(pedido.id)"><img
-                src="../../../assets/svg/x.svg" /></button>
-          </td>
+            <span style="display: flex; justify-content: space-around;">
 
-          <td>
-            <button type="button" class="btn btn-outline-dark" (click)="statusPedidoConcluido(pedido.id)"><img
-                src="../../../assets/svg/check.svg" /></button>
+              <button type="button" class="btn btn-outline-dark" (click)="statusPedidoCancelado(pedido.id)"><img
+                  src="../../../assets/svg/x.svg" /></button>
+
+              <button type="button" class="btn btn-outline-dark" (click)="statusPedidoConcluido(pedido.id)"><img
+                  src="../../../assets/svg/check.svg" /></button>
+            </span>
           </td>
         </tr>
       </tbody>
